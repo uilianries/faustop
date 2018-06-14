@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import subprocess
+import random
+
+def main():
+    dir_path = os.path.join(os.sep, "usr", "share", "faustop", "audios")
+    if os.path.isdir(dir_path):
+        files = [f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))]
+        file = random.choice(files)
+        audio_file = os.path.join(dir_path, file)
+        subprocess.call(["mplayer", audio_file])
+
+if __name__ == "__main__":
+    main()
