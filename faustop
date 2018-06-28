@@ -4,14 +4,33 @@
 import os
 import subprocess
 import random
+import sys
+
+
+def choose_player():
+    from distutils.spawn import find_executable
+    if find_executable('mplayer'):
+        return ['mplayer']
+    elif find_executable('mpg123'):
+        return ['mpg123']
+    elif find_executable('cvlc'):
+        return ['cvlc', '--play-and-exit', '--no-loop']
+    else:
+        raise RuntimeError('No suitable MP3 player found')
+
 
 def main():
-    dir_path = os.path.join(os.sep, "usr", "share", "faustop", "audios")
+    # Strip two levels from /some/where/usr/bin/faustop to get /some/where/usr
+    base_path = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
+    dir_path = os.path.join(base_path, "share", "faustop", "audios")
     if os.path.isdir(dir_path):
         files = [f for f in os.listdir(dir_path) if os.path.isfile(os.path.join(dir_path, f))]
         file = random.choice(files)
         audio_file = os.path.join(dir_path, file)
-        subprocess.call(["mplayer", audio_file])
+        cmd = choose_player()
+        cmd.append(audio_file)
+        subprocess.call(cmd)
+
 
 if __name__ == "__main__":
     main()
