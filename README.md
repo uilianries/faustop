@@ -9,18 +9,29 @@ Para instalar no sistema Linux
     cd build
     cmake ..
     cmake --build . --target install
-    
+
 #### Package
 Para criar pacote deb
 
     mkdir build
     cd build
     cmake ..
-    cpack -G DEB .
+    cpack -G DEB
+    dpkg -i faustop-0.2.0-Linux.deb
+
+
+Para mudar o diretório base de instalação
+
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=/custom/base/path
+    cpack -G DEB
+    dpkg -i faustop-0.2.0-Linux.deb
 
 #### Usage
 Executar uma frase aleatória
-faustop
+
+    $ faustop
 
 #### LICENSE
 [MIT](LICENSE)
