@@ -1,0 +1,15 @@
+os: linux
+addons:
+  apt:
+    packages:
+      - cmake-data
+      - cmake
+      - mplayer
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cpack -G DEB
+  - sudo dpkg -i faustop-0.2.0-Linux.deb
+  - faustop
