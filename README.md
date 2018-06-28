@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/uilianries/faustop.svg?branch=master)](https://travis-ci.org/uilianries/faustop)
 # faustop
 
 ## Player com frases aleatórias do Fausto Silva
